@@ -8,7 +8,7 @@ void handle_connect(struct mosquitto *mosq, void *obj,int rc){
         printf("Error code %d\n",rc);
         exit(-1);
     }
-    char* topic = "device/one";
+    char* topic = "device/+";
     mosquitto_subscribe(mosq,NULL,topic,1);
 }
 
