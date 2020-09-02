@@ -50,18 +50,17 @@ char* data_two(){
     float distance;
     distance = (rand()%((int)100))+0.00000;
     int device_number=2;
-    char dist[32],device_num[10],switch_state;
-    if((rand()%((int)5))<=(int)5){
-        switch_state="ON";
-    }else{
-        switch_state="OFF";
+    char dist[32],device_num[10];
+    char switch_state[10]="ON";
+    if(((rand()%((int)10))<=(int)5)){
+        strcpy(switch_state,"OFF");
     }
     sprintf(dist,"%0.2f",distance);
     sprintf(device_num,"%d",device_number);
     json_object * jobj = json_object_new_object();
     json_object *jdistance = json_object_new_string(dist);
     json_object *jdevice_num = json_object_new_string(device_num);
-    json_object *jswitch_state = json_object_new_string(&switch_state);
+    json_object *jswitch_state = json_object_new_string(switch_state);
     json_object *jtimestamp = json_object_new_string(timestamp());
     json_object_object_add(jobj,"device_id", jdevice_num);
     json_object_object_add(jobj,"timestamp", jtimestamp);
