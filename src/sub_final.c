@@ -18,41 +18,32 @@ void write_data(const char *data,char* fname){
 void get_data(char* data){
     struct json_object *jobj,*jtemp,*jhumi,*jid,*jtime,*jap,*jph,*jdis,*jswitch;
     jobj = json_tokener_parse(data);
-	// printf("%s\n", json_object_to_json_string_ext(jobj, JSON_C_TO_STRING_SPACED | JSON_C_TO_STRING_PRETTY));
-    json_object_object_get_ex(jobj,"temperature",&jtemp);
-    const char *temp = json_object_to_json_string(jtemp);
+	printf("%s\n", json_object_to_json_string_ext(jobj, JSON_C_TO_STRING_SPACED | JSON_C_TO_STRING_PRETTY));
     json_object_object_get_ex(jobj,"device_id",&jid);
-    const char *id = json_object_to_json_string(jid);
-    json_object_object_get_ex(jobj,"humidity",&jhumi);
-    const char *humi = json_object_to_json_string(jhumi);
+    const char *id = json_object_get_string(jid);
     json_object_object_get_ex(jobj,"timestamp",&jtime);
-    const char *time = json_object_to_json_string(jtime);
-    json_object_object_get_ex(jobj,"air_pressure",&jap);
-    const char *ap = json_object_to_json_string(jap);
-    json_object_object_get_ex(jobj,"ph",&jph);
-    const char *ph = json_object_to_json_string(jph);
-    json_object_object_get_ex(jobj,"distance",&jdis);
-    const char *dis = json_object_to_json_string(jdis);
-    json_object_object_get_ex(jobj,"switch_state",&jswitch);
-    const char *swi = json_object_to_json_string(jswitch);
-    if(strcmp(temp,"null")){
-        printf("%s %s %s %s %s %s\n",id,time,temp,humi,ap,ph);                                                                  //json_object_to_json_string_ext(jobj, JSON_C_TO_STRING_SPACED | JSON_C_TO_STRING_PRETTY)
+    const char *time = json_object_get_string(jtime);
+    if(strcmp(id,"1")==0){
+        json_object_object_get_ex(jobj,"air_pressure",&jap);
+        const char *ap = json_object_get_string(jap);
+        json_object_object_get_ex(jobj,"ph",&jph);
+        const char *ph = json_object_get_string(jph);
+        json_object_object_get_ex(jobj,"humidity",&jhumi);
+        const char *humi = json_object_get_string(jhumi);
+        json_object_object_get_ex(jobj,"temperature",&jtemp);
+        const char *temp = json_object_get_string(jtemp);
+        // printf("%s %s %s %s %s %s\n",id,time,temp,humi,ap,ph);                                                                  //json_object_to_json_string_ext(jobj, JSON_C_TO_STRING_SPACED | JSON_C_TO_STRING_PRETTY)
         write_data(temp,"data/device1/temperature.txt");
         write_data(humi,"data/device1/humidity.txt");
         write_data(time,"data/device1/time.txt");
         write_data(ap,"data/device1/air_pressure.txt");
         write_data(ph,"data/device1/ph.txt");
-        // FILE *fptr;
-        // fptr = fopen("data/temperature.txt","a");
-        // if(fputs(temp,fptr) && fputs("\n",fptr)){
-        //     // printf("fine\n");
-        // }else{
-        //     printf("error\n");
-        // }
-        // fclose(fptr);
-
     }else{
-        printf("%s %s %s %s\n",id,time,dis,swi);
+        json_object_object_get_ex(jobj,"distance",&jdis);
+        const char *dis = json_object_get_string(jdis);
+        json_object_object_get_ex(jobj,"switch_state",&jswitch);
+        const char *swi = json_object_get_string(jswitch);
+        // printf("%s %s %s %s\n",id,time,dis,swi);
         write_data(dis,"data/device2/distance.txt");
         write_data(swi,"data/device2/switch_state.txt");
     }
