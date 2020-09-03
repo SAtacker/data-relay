@@ -15,9 +15,9 @@ char* timestamp(){
 char* data_one(){
     float potenz_hydrogen,temperature,humidity;
     int air_pressure;
-    temperature = (rand()%((int)150))-40.0000;
-    humidity = (rand()%((int)100))+0.0000;
-    potenz_hydrogen = (rand()%((int)14))+0.000000;
+    temperature = (rand()%((int)150))-40.0000 + 0.574/(rand()%10+1);
+    humidity = (rand()%((int)100))+0.7866/(rand()%10+1);
+    potenz_hydrogen = (rand()%((int)14))+0.7876/(rand()%10+1);
     air_pressure = (rand()%((int)297))+(int)3;
     int device_number=1;
     // char* data = "data_1";
@@ -48,7 +48,7 @@ char* data_two(){
     // char* data = "data_2";
     // return data;
     float distance;
-    distance = (rand()%((int)100))+0.00000;
+    distance = (rand()%((int)100))+0.75/(rand()%10+1);
     int device_number=2;
     char dist[32],device_num[10];
     char switch_state[10]="ON";
