@@ -5,7 +5,7 @@
 #include <time.h>
 #include <string.h>
 #include <pthread.h>
-
+// gcc pub_final.c -o pub_final -lmosquitto -ljson-c -lpthread
 char* timestamp(){
     time_t t;
     t=time(NULL);
