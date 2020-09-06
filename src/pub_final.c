@@ -5,6 +5,7 @@
 #include <time.h>
 #include <string.h>
 #include <pthread.h>
+#define SEED 3
 // gcc pub_final.c -o pub_final -lmosquitto -ljson-c -lpthread
 char* timestamp(){
     time_t t;
@@ -13,6 +14,7 @@ char* timestamp(){
 }
 
 char* data_one(){
+    srand(SEED);
     float potenz_hydrogen,temperature,humidity;
     int air_pressure;
     temperature = (rand()%((int)150))-40.0000 + 0.574/(rand()%10+1);
@@ -47,6 +49,7 @@ char* data_one(){
 char* data_two(){
     // char* data = "data_2";
     // return data;
+    srand(SEED);
     float distance;
     distance = (rand()%((int)100))+0.75/(rand()%10+1);
     int device_number=2;
