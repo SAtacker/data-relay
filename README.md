@@ -36,8 +36,8 @@
 <p align="center">
   <a href="https://github.com/SAtacker/data-relay">
     <img src="images/datarelay.png" alt="Logo" width="150" height="80">
-  </a>
-
+  </a><br>
+    <a href="https://www.vectorstock.com/royalty-free-vector/data-compression-vector-19122120">Data compression vector by vectorstock</a>
   <h3 align="center">Data Relay</h3>
 
   <p align="center">
