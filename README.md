@@ -146,9 +146,9 @@ sudo apt-get update
 
 ```sh
 cd src/
-gcc src/sub_final.c -o sub_final -lmosquitto -ljson-c
-gcc src/pub_final.c -o pub_final -lmosquitto -ljson-c -lpthread
-g++ src/cpp_compression.cpp
+gcc sub_final.c -o sub_final -lmosquitto -ljson-c
+gcc pub_final.c -o pub_final -lmosquitto -ljson-c -lpthread
+g++ cpp_compression.cpp
 ```
 
 * To run subscriber use `./sub_final` and for publisher use `./pub_final` 
