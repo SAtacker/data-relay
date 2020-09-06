@@ -145,6 +145,7 @@ sudo apt-get update
 ### Usage
 
 ```sh
+cd src/
 gcc src/sub_final.c -o sub_final -lmosquitto -ljson-c
 gcc src/pub_final.c -o pub_final -lmosquitto -ljson-c -lpthread
 g++ src/cpp_compression.cpp
