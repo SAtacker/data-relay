@@ -38,7 +38,7 @@
     <img src="images/datarelay.png" alt="Logo" width="150" height="80">
   </a>
 
-  <h3 align="center">YOUR_TITLE</h3>
+  <h3 align="center">Data Relay</h3>
 
   <p align="center">
     Simulation of multi-sensor data collection using MQTT and store a weeks data effectively using compression techniques.
