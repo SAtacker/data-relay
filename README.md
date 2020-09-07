@@ -36,8 +36,9 @@
 <p align="center">
   <a href="https://github.com/SAtacker/data-relay">
     <img src="images/datarelay.png" alt="Logo" width="150" height="80">
-  </a><br>
-    <a href="https://www.vectorstock.com/royalty-free-vector/data-compression-vector-19122120">Data compression vector by vectorstock</a>
+  </a>
+  <br/>
+  <a href="https://www.vectorstock.com/royalty-free-vector/data-compression-vector-19122120">Data compression vector by vectorstock</a>
   <h3 align="center">Data Relay</h3>
 
   <p align="center">
@@ -64,6 +65,7 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
 * [Usage](#usage)
+* [Output](#output)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
@@ -155,6 +157,14 @@ g++ cpp_compression.cpp
 Note: Run subscriber before publisher
 
 * To compress the redundant data use `./a.out`
+
+<!-- OUTPUT -->
+## Output
+<br />
+<p align="center">
+  <img src="images/opt.png" alt="output" width="720" height="480">
+  <br />
+</p>
 
 <!-- ROADMAP -->
 ## Roadmap
