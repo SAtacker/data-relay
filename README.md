@@ -113,7 +113,14 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
+### Problem Statement
+
+```
+Consider you have deployed various sensors in your office like temperature, pressure, gas, smoke, motion, proximity, etc. These sensors are present on different floors and rooms with 50 edge boards. You need to get the sensor readings to a single device like your mobile phone. Also, since sensors will be working the whole day, the size of data will increase tremendously. Considering that you need at least one week's data to provide the user with some statistics, you will have to compress and store the data on the user's device.
+```
+<p>
+<a href="https://github.com/SRA-VJTI/practice-assignments/blob/master/Data-Relay/data-relay.md">Data Relay by SRA-VJTI</a>
+</p>
 
 This project focusses on the MQTT, Multithreading, Compression Algo and File I/O in C and C++
 
