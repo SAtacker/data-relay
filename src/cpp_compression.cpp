@@ -10,6 +10,16 @@
 #endif
 using namespace std;
 
+int file_size(string *filename)
+{
+    FILE *p_file = NULL;
+    p_file = fopen(filename->c_str(),"rb");
+    fseek(p_file,0,SEEK_END);
+    int size = ftell(p_file);
+    fclose(p_file);
+    return size;
+}
+
 string decode_lzw(vector<int> compressed) {
     int dictSize = 256;
     map<int,string> dictionary;
@@ -119,6 +129,8 @@ void func(string to_compress,string compress_destination,string decompress_desti
 int main(){
     cout<<"Oh yeah"<<"\n";
     int turn=0;
+    string fnames_ori[] = {"data/compressed/device2/decomp_switch_state.txt","data/compressed/device2/decomp_distance.txt","data/compressed/device1/decomp_time.txt","data/compressed/device1/decomp_air_pressure.txt","data/compressed/device1/decomp_ph.txt","data/compressed/device1/decomp_humidity.txt","data/compressed/device1/decomp_temperature.txt"};
+    string fnames_cmpd[] = {"data/compressed/device2/switch_state.txt","data/compressed/device2/distance.txt","data/compressed/device1/time.txt","data/compressed/device1/air_pressure.txt","data/compressed/device1/ph.txt","data/compressed/device1/humidity.txt","data/compressed/device1/temperature.txt"};
     while (true)
     {
         func("data/device1/temperature.txt","data/compressed/device1/temperature.txt","data/compressed/device1/decomp_temperature.txt");
@@ -129,7 +141,16 @@ int main(){
         func("data/device2/distance.txt","data/compressed/device2/distance.txt","data/compressed/device2/decomp_distance.txt");
         func("data/device2/switch_state.txt","data/compressed/device2/switch_state.txt","data/compressed/device2/decomp_switch_state.txt");
         cout<<"\n======================================================================\n";
-        cout<<"Seeping for 120 sec"<<" | Turn number "<<(++turn)<<" is done";
+        cout<<"Seeping for 120 sec"<<" | Turn number "<<(++turn)<<" is done\n";
+        int sze_ori=0,cmp_sze=0;
+        for(int i{};i<7;i++){
+            sze_ori+=file_size(&fnames_ori[i]);
+            cmp_sze+=file_size(&fnames_cmpd[i]);
+        }
+        cout<<"Total initial/decompressed files size:\t"<<sze_ori<<"\n";
+        cout<<"Compressed Files Total Size          :\t"<<cmp_sze<<"\n";
+        cout<<"Space Savings                        :\t"<<100.00-(100.00*cmp_sze/sze_ori)<<" %\n";
+        cout<<"Compression Ratio                    :\t"<<sze_ori/cmp_sze*1.00<<"\n";
         cout<<"\n======================================================================\n";
         sleep(60*2);
     }

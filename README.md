@@ -163,8 +163,13 @@ Note: Run subscriber before publisher
 <br />
 <p align="center">
   <img src="images/opt.png" alt="output" width="720" height="480">
+  <p align="center">
+  Now it also shows compression ratio and space savings calculated according to <a href="https://en.wikipedia.org/wiki/Data_compression_ratio">Wikipedia</a>
   <br />
+  <img src="images/compressionopt.png" alt="Compression Ratio" width="720" height="256">
+  </p>
 </p>
+<br />
 
 <!-- ROADMAP -->
 ## Roadmap
