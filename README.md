@@ -62,6 +62,7 @@
 
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
+  * [Process](#process)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
 * [Usage](#usage)
@@ -116,6 +117,13 @@
 
 This project focusses on the MQTT, Multithreading, Compression Algo and File I/O in C and C++
 
+<!-- PROCESS -->
+## Process
+<br />
+<p align="center">
+  <img src="images/detarelayprocess.png" alt="output" width="720" height="720">
+</p>
+<br />
 
 ### Built With
 
