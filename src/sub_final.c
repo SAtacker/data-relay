@@ -61,7 +61,7 @@ void handle_connect(struct mosquitto *mosq, void *obj,int rc){
         exit(-1);
     }
     char* topic = "device/+";
-    mosquitto_subscribe(mosq,NULL,topic,1);
+    mosquitto_subscribe(mosq,NULL,topic,2);
 }
 
 void handle_msg(struct mosquitto *mosq, void *obj, const struct mosquitto_message *message)

@@ -5,6 +5,11 @@
 #include <time.h>
 #include <string.h>
 #include <pthread.h>
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 #define SEED 3
 // gcc pub_final.c -o pub_final -lmosquitto -ljson-c -lpthread
 char* timestamp(){
@@ -13,8 +18,8 @@ char* timestamp(){
     return asctime(localtime(&t));
 }
 
-char* data_one(){
-    srand(SEED);
+char* data_one(int i){
+    srand(i);
     float potenz_hydrogen,temperature,humidity;
     int air_pressure;
     temperature = (rand()%((int)150))-40.0000 + 0.574/(rand()%10+1);
@@ -46,10 +51,10 @@ char* data_one(){
     return json_to_cstyle;
 }
 
-char* data_two(){
+char* data_two(int i){
     // char* data = "data_2";
     // return data;
-    srand(SEED);
+    srand(i);
     float distance;
     distance = (rand()%((int)100))+0.75/(rand()%10+1);
     int device_number=2;
@@ -75,9 +80,9 @@ char* data_two(){
 
 char* data_bot(int n){
     if(n < 30){
-        return data_one();
+        return data_one(n);
     }else{
-        return data_two();
+        return data_two(n);
     }
 }
 
@@ -93,8 +98,12 @@ void* mosq_bot_type_1(void *obj){
     }
     char* bot_topic = "device/one" ;
     // printf("%s\n",sensor_data);
-    if(mosquitto_publish(mosq,NULL,bot_topic,strlen(sensor_data),sensor_data,1,false)!=MOSQ_ERR_SUCCESS){
-        printf("Some error\n");
+    while(true){    
+        if(mosquitto_publish(mosq,NULL,bot_topic,strlen(sensor_data),sensor_data,1,false)!=MOSQ_ERR_SUCCESS){
+            printf("Some error\n");
+        }
+        mosquitto_loop(mosq,10,10);
+        usleep(0.5*1000000);
     }
     mosquitto_loop(mosq,10,10);
     mosquitto_disconnect(mosq);
@@ -113,10 +122,13 @@ void* mosq_bot_type_2(void *obj){
     }
     char* bot_topic = "device/two" ;
     // printf("in thread number %s\n",sensor_data);
-    if(mosquitto_publish(mosq,NULL,bot_topic,strlen(sensor_data),sensor_data,1,false)!=MOSQ_ERR_SUCCESS){
-        printf("Some error\n");
+    while(true){    
+        if(mosquitto_publish(mosq,NULL,bot_topic,strlen(sensor_data),sensor_data,1,false)!=MOSQ_ERR_SUCCESS){
+            printf("Some error\n");
+        }
+        mosquitto_loop(mosq,10,10);
+        usleep(0.5*1000000);
     }
-    mosquitto_loop(mosq,10,10);
     mosquitto_disconnect(mosq);
     pthread_exit(NULL);
 }
@@ -140,9 +152,14 @@ int main(){
         }
     }
     for(int i=0;i<50;i++){
-        if(pthread_join(bots[i],&retvals[i])){
-            printf("thread error, %d\n",i);
-        }
+        int err=0;
+        do{
+            if(pthread_join(bots[i],&retvals[i]))
+            {
+                printf("thread error, %d\n",i);
+                err=1;
+            }
+        }while(err);
     }
     return 0;
 }

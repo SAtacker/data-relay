@@ -129,9 +129,9 @@ int main(){
         func("data/device2/distance.txt","data/compressed/device2/distance.txt","data/compressed/device2/decomp_distance.txt");
         func("data/device2/switch_state.txt","data/compressed/device2/switch_state.txt","data/compressed/device2/decomp_switch_state.txt");
         cout<<"\n======================================================================\n";
-        cout<<"Seeping for 60 sec"<<" | Turn number "<<(++turn)<<" is done";
+        cout<<"Seeping for 120 sec"<<" | Turn number "<<(++turn)<<" is done";
         cout<<"\n======================================================================\n";
-        sleep(60);
+        sleep(60*2);
     }
     return 0;
 }
